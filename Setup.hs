@@ -42,7 +42,7 @@ main = defaultMainWithHooks simpleUserHooks {
 
 mysqlConfigProgram = (simpleProgram "mysql_config") {
     programFindLocation = \verbosity -> constOrId $ liftM msum $ sequence
-#if MIN_VERSION_Cabal(1,24,0)
+#if MIN_VERSION_Cabal(1,24,0) || defined(__GHCJS__)
       [ (findProgramOnSearchPath verbosity [ProgramSearchPathDefault] "mysql_config")
       , (findProgramOnSearchPath verbosity [ProgramSearchPathDefault] "mysql_config5")
       , (findProgramOnSearchPath verbosity [ProgramSearchPathDefault] "mariadb_config")
